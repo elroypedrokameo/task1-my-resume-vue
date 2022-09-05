@@ -4,7 +4,7 @@ export default {
     return {
       experiences: [
         {id: 1, title: 'Starter Frontend Engineer', company: 'Qatros', duration: 'Aug 2022 - present', desc: 'Membuat aplikasi menggunakan framework Vue.js'},
-        {id: 2, title: 'Frontend Engineer ', company: 'Ruangguru', duration: 'Feb 2022 - Jul 2022', desc: 'Membuat aplikasi menggunakan framework ReactJs'},
+        {id: 2, title: 'Frontend Engineer ', company: 'Ruangguru', duration: 'Feb 2022 - Jul 2022', desc: 'Membuat aplikasi menggunakan ReactJs'},
         {id: 3, title: 'Frontend Developer', company: 'Evomo', duration: 'Aug 2021 - Nov 2021', desc: 'Membuat aplikasi menggunakan framework Angular'},
       ] ,
       skills: [
@@ -14,6 +14,7 @@ export default {
         {title: 'CSS', percentage: 60},
       ],
       isOpen : false,
+      selectedId: null,
       name: '',
       email: '',
       note: '',
@@ -22,7 +23,11 @@ export default {
   },
   methods: {
     handleClick(id) {
-      this.isOpen = !this.isOpen
+      if (id === this.selectedId) {
+        this.selectedId = null
+      } else {
+        this.selectedId = id
+      }
     },
     handleSubmit() {
       alert(`Thank you ${this.name}, we'll send you an email to ${this.email} regarding ${this.note}`)
@@ -40,10 +45,11 @@ export default {
     <h2>Elroy Pedro Kameo</h2>
     <p>Hi! Saya adalah seorang Frontend Engineer Intern di Qatros</p>
     <div>
+      <h2>Experiences</h2>
       <ol>
-        <li class="skill" v-for="experience in experiences" :key="experience.id" @click="handleClick()" >
+        <li class="skill" v-for="experience in experiences" :key="experience.id" @click="handleClick(experience.id)" >
           {{ experience.duration }} - {{ experience.title }} at {{ experience.company }}   
-            <p v-if="isOpen">{{ experience.desc }}</p>
+            <p v-if="experience.id === selectedId">{{ experience.desc }}</p>
         </li>
       </ol>
     </div>
