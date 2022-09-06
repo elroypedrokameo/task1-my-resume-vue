@@ -6,19 +6,17 @@ export default {
         {id: 1, title: 'Starter Frontend Engineer', company: 'Qatros', duration: 'Aug 2022 - present', desc: 'Membuat aplikasi menggunakan framework Vue.js'},
         {id: 2, title: 'Frontend Engineer ', company: 'Ruangguru', duration: 'Feb 2022 - Jul 2022', desc: 'Membuat aplikasi menggunakan ReactJs'},
         {id: 3, title: 'Frontend Developer', company: 'Evomo', duration: 'Aug 2021 - Nov 2021', desc: 'Membuat aplikasi menggunakan framework Angular'},
-      ] ,
+      ],
       skills: [
         {title: 'ReactJs', percentage: 70},
         {title: 'Vue.js', percentage: 10},
         {title: 'HTML', percentage: 90},
         {title: 'CSS', percentage: 60},
       ],
-      isOpen : false,
       selectedId: null,
       name: '',
       email: '',
       note: '',
-      percentage: 0,
     }
   },
   methods: {
@@ -29,12 +27,10 @@ export default {
         this.selectedId = id
       }
     },
-    handleSubmit() {
-      alert(`Thank you ${this.name}, we'll send you an email to ${this.email} regarding ${this.note}`)
-    },
     handleForm() {
+      alert(`Thank you ${this.name}, we'll send you an email to ${this.email} regarding ${this.note}`)
       this.$refs.form.reset()
-    }
+    },
   }
 }
 </script>
@@ -71,15 +67,15 @@ export default {
           <label for="name">Name</label>
           <input v-model="name" type="text" required>
         </div>
-        <div class="input-email">
-          <label for="email">Email</label>
-          <input v-model="email" type="email" required>
-        </div>
         <div class="input-note">
           <label for="note">Note</label>
           <textarea v-model="note" name="note"></textarea>
         </div>
-        <button class="btn-submit" @click="handleSubmit()">Submit</button>
+        <div class="input-email">
+          <label for="email">Email</label>
+          <input v-model="email" type="email" required>
+        </div>
+        <button class="btn-submit">Submit</button>
       </form>
     </div>
   </div>
